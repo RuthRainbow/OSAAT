@@ -1,20 +1,20 @@
 <?php
 // Db stuff
-include "config.php";
+include("config.php");
 
 $mysqli = new mysqli("localhost", $mysql_user, $mysql_password, $mysql_db);
 
 $login_error = false;
 $login_errors = array();
 if (isset($_POST['submit_login'])) {
-	if (isset($_POST['username']) && $_POST['username'] != '') {
+	if (existsWithLength('username')) {
 		$logindetails = $_POST['username'];
 	} else {
 		$login_error = true;
 		array_push($login_errors, "Enter your username");
 	}
 
-	if (isset($_POST['password']) && $_POST['password'] != '') {
+	if (existsWithLength('password')) {
 		$password = $_POST['password'];
 	} else {
 		$login_error = true;
@@ -70,4 +70,8 @@ function require_login() {
 		include 'footer.php';
 		exit();
 	}
+}
+
+function existsWithLength($field, $length=0) {
+	return isset($_POST[$field]) && strlen($_POST[$field]) > $length;
 }

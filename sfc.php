@@ -45,7 +45,7 @@ $(function() {
 	var dataString = 'sfcID=' + "<?php echo $ID; ?>";
 	$.ajax({
 		type:"POST",
-		url:"processVote.php",
+		url:"process_vote.php",
 		data: dataString,
 		success: function() {
 			alert("Thanks for your vote");

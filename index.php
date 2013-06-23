@@ -5,10 +5,9 @@ include('header.php');
 <p>Welcome to the campaign collaboration webspace. Please browse campaigns to vote and have your say or create your own campaign suggestion.</p>
 <p>Click <a href="new_account.php">here</a> to create a new account</p>
 <?php
-$query = sprintf("SELECT * FROM OS_SfCs");
 
 // Perform Query
-$result = $mysqli->query($query);
+$result = $mysqli->query("SELECT * FROM OS_SfCs");
 
 // Check result
 // This shows the actual query sent to MySQL, and the error. Useful for debugging.
