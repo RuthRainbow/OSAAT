@@ -2,7 +2,7 @@
 $pagename = 'SFCs';
 include('header.php');
 $ID = $_GET["id"];
-$query = sprintf("SELECT * FROM OS_SfCs WHERE ID = '$ID'");
+$query = "SELECT * FROM OS_SfCs WHERE ID = '".$mysqli->real_escape_string($ID)."'";
 
 // Perform Query
 $result = $mysqli->query($query);
