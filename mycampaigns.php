@@ -1,9 +1,9 @@
 <?php
-$pagename = 'My Projects';
+$pagename = 'My Campaigns';
 include('header.php');
 require_login();
 ?>
-<h2>Projects I created</h2>
+<h2>Campaigns I created</h2>
 <table id="created">
 	<tr><th>Name</th></tr>
 <?
@@ -15,6 +15,6 @@ while($row = $result->fetch_assoc())
 ?>
 </table>
 
-<h2>Projects I voted for</h2>
+<h2>Campaigns I voted for</h2>
 <?
 include('footer.php');
