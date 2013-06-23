@@ -1,14 +1,16 @@
 <?php
-$pagename = 'Login';
-include('header.php');
+if(isset($login['id']))
+{
 ?>
-<form>
-Username: <input type="text" name="username"><br>
-Password: <input type="text" name="password">
+Logged in as <?echo($login['username'])?><br />
+<a href="logout.php">Logout</a>
+<?
+} else {
+?>
+<form action="" method="post">
+	Username: <input type="text" name="username"><br />
+	Password: <input type="password" name="password"><br />
+	<input type="submit" value="Login" name="submit_login" />
 </form>
-<button> Login </button>
-<form action="new_account.html">
-    <input type="submit" value="Create a new account">
-</form>
-</body>
-<?include('footer.php');
+<?
+}
