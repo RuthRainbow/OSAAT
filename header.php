@@ -21,9 +21,10 @@ include('common.php');
 				<ul id="nav">
 					<li><a href="index.php">Home</a></li>
 <?if(isset($login['id'])){?>
-					<li><a href="myprojects.php">My Projects</a></li>
+					<li><a href="add_campaign.php">Add Campaign</a></li>
+					<li><a href="mycampaigns.php">My Campaigns</a></li>
 <?}?>
-					<li><a href="sfc.php">Projects</a></li>
+					<li><a href="sfc.php">Campaigns</a></li>
 					<li><a href="sfc.php">Categories</a></li>
 					<li><a href="sfc.php">Locations</a></li>
 					<li><a href="sfc.php">People</a></li>
