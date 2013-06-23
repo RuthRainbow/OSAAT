@@ -25,8 +25,12 @@ $name = $row['Name'];
 $creator = $row['Creator'];
 $details = $row['Details'];
 
-echo "<h2>".$name."</h2>";
-echo "<p>".$details."</p>";
+?>
+
+	<h2><?echo($name)?></h2>
+	<p><?echo($details)?></p>
+	<div id="map-canvas" style="height: 400px; width: 400px;"></div>
+<?
 
 // Free the resources associated with the result set
 // This is done automatically at the end of the script
@@ -57,5 +61,29 @@ $(function() {
 	return false;   
   });  
 }); 
+
+function initialize() {
+	var myLatlng = new google.maps.LatLng(<?echo($row['Latitude'])?>, <?echo($row['Longitude'])?>)
+	var mapOptions = {
+		zoom: 5,
+		center: myLatlng,
+		//mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+	var marker = new google.maps.Marker({
+		position: myLatlng,
+		map: map,
+		title: "<?echo($name)?>"
+	});
+}
+
+function loadScript() {
+	var script = document.createElement("script");
+	script.type = "text/javascript";
+	script.src = "http://maps.googleapis.com/maps/api/js?key=<?echo($maps_api_key);?>&sensor=false&callback=initialize";
+	document.body.appendChild(script);
+}
+
+window.onload = loadScript;
 </script>
 <?include('footer.php');

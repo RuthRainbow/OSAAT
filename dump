@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.1.66, for debian-linux-gnu (x86_64)
 --
--- Host: localhost    Database: ruth
+-- Host: localhost    Database: zed0
 -- ------------------------------------------------------
 -- Server version	5.1.66-0+squeeze1
 
@@ -120,8 +120,8 @@ CREATE TABLE `OS_SfCs` (
   `Name` text NOT NULL,
   `Creator` int(11) NOT NULL,
   `Details` text NOT NULL,
-  `Latitude` int(11) NOT NULL,
-  `Longitude` int(11) NOT NULL,
+  `Latitude` float DEFAULT NULL,
+  `Longitude` float DEFAULT NULL,
   `NumVotes` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `Creator` (`Creator`)
@@ -177,7 +177,7 @@ CREATE TABLE `OS_Users` (
   `Salt` varchar(255) NOT NULL,
   `Username` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -204,4 +204,4 @@ CREATE TABLE `OS_UsersVotes` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-23 21:43:49
+-- Dump completed on 2013-06-23 22:02:11
