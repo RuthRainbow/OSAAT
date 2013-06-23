@@ -120,9 +120,12 @@ CREATE TABLE `OS_SfCs` (
   `Name` text NOT NULL,
   `Creator` int(11) NOT NULL,
   `Details` text NOT NULL,
+  `Latitude` int(11) NOT NULL,
+  `Longitude` int(11) NOT NULL,
+  `NumVotes` int(11) NOT NULL,
   PRIMARY KEY (`ID`),
   KEY `Creator` (`Creator`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -174,7 +177,7 @@ CREATE TABLE `OS_Users` (
   `Salt` varchar(255) NOT NULL,
   `Username` varchar(50) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -186,4 +189,4 @@ CREATE TABLE `OS_Users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-23 19:08:41
+-- Dump completed on 2013-06-23 21:16:36
