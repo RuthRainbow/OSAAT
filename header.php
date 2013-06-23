@@ -10,11 +10,12 @@ include('common.php');
 	<body>
 		<div id="header">
 			<div id="title">
-				<h1><?echo($pagename)?></h1>
+				<h1>OSAAT</h1><h2><?echo($pagename)?></h2>
 			</div>
-			<div id="links">
-				<a href="faq.php">faq</a><a href="about.php">about</a><a href="contact.php">contact us</a>
+		<div id="links">
+				<a href="faq.html">faq</a><a href="faq.html">about</a><a href="faq.html">contact us</a>
 			</div>
+		
 		</div>
 		<div id="wrapper">
 			<div id="left-bar">
@@ -24,10 +25,10 @@ include('common.php');
 					<li><a href="myprojects.php">My Projects</a></li>
 <?}?>
 					<li><a href="sfc.php">Projects</a></li>
-					<li><a href="sfc.php">Categories</a></li>
-					<li><a href="sfc.php">Locations</a></li>
-					<li><a href="sfc.php">People</a></li>
-					<li><a href="sfc.php">Organisations</a></li>
+					<li><a href="sfc.php">categories</a></li>
+					<li><a href="sfc.php">locations</a></li>
+					<li><a href="sfc.php">people</a></li>
+					<li><a href="sfc.php">organisations</a></li>
 				</ul>
 			</div>
 			<div id="content">
