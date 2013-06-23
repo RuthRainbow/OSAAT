@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include("common.php");
 
@@ -9,8 +9,7 @@ if(!isset($login['id'])) {
 } else {
        $mysqli->query("INSERT INTO " .$mysql_prefix. "UsersVotes(UserID, SfCID) VALUES (
 		'".$mysqli->real_escape_string($login['id'])."',
-		'".$mysqli->real_escape_string($sfcID)."')"); 
+		'".$mysqli->real_escape_string($sfcID)."')");
 }
 
 ?>
-
