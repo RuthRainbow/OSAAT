@@ -4,6 +4,7 @@ include('common.php');
 <!DOCTYPE html>
 <html>
 	<head>
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 		<title>OSAAT</title>
 <link rel="StyleSheet" type="text/css" href="./style.css"/>
 	</head>

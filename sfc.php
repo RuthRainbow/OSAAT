@@ -32,5 +32,30 @@ echo "<p>".$details."</p>";
 // This is done automatically at the end of the script
 $result->free_result();
 ?>
+<div id="input_form">
+<form name="input" action="" method="get">
+<input type="submit" value="Up vote!" id="submit">
+</form>
+</div>
 
+<script type="text/javascript"> 
+$(function() {  
+  $("#submit").click(function() {  
+
+	var dataString = 'sfcID=' + "<?php echo $ID; ?>";
+	$.ajax({
+		type:"POST",
+		url:"processVote.php",
+		data: dataString,
+		success: function() {
+			alert("Thanks for your vote");
+		},	
+		error: function() {
+			alert("You must be logged in to vote");
+		}
+	});
+	return false;   
+  });  
+}); 
+</script>
 <?include('footer.php');
