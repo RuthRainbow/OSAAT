@@ -29,7 +29,7 @@ if (isset($_POST['submit_login'])) {
 				if (hash('sha256',$row['Salt'].$password) == $row['Password']) {
 					$login_error = false;
 					setcookie($cookie_name, base64_encode($logindetails).":".hash('sha256',$logindetails.$row['Password']));
-					$login['username'] = base64_decode($login[0]);
+					$login['username'] = $logindetails;
 					$login['id'] = $row['ID'];
 				} else {
 					$login_error = true;
