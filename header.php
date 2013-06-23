@@ -20,6 +20,9 @@ include('common.php');
 			<div id="left-bar">
 				<ul id="nav">
 					<li><a href="index.php">Home</a></li>
+<?if(isset($login['id'])){?>
+					<li><a href="myprojects.php">My Projects</a></li>
+<?}?>
 					<li><a href="sfc.php">Projects</a></li>
 					<li><a href="sfc.php">Categories</a></li>
 					<li><a href="sfc.php">Locations</a></li>
