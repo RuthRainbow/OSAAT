@@ -32,7 +32,7 @@ if(isset($_POST['submit']))
 		array_push($errors, "Enter a first name");
 	}
 
-	if(existsWithLength('lastname')) {}
+	if(existsWithLength('lastname')) {
 		$lastname = $_POST['lastname'];
 	} else {
 		$error = true;
