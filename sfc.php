@@ -21,14 +21,10 @@ if (!$result) {
 // One of the mysql result functions must be used
 // See also mysql_result(), mysql_fetch_array(), mysql_fetch_row(), etc.
 $row = $result->fetch_assoc();
-$name = $row['Name'];
-$creator = $row['Creator'];
-$details = $row['Details'];
-
 ?>
-
-	<h2><?echo($name)?></h2>
-	<p><?echo($details)?></p>
+	<h2><?echo(stripslashes($row['Name']))?></h2>
+	<p><?echo(stripslashes($row['Location']))?></p>
+	<p><?echo(stripslashes($row['Details']))?></p>
 	<div id="map-canvas" style="height: 400px; width: 400px;"></div>
 <?
 
