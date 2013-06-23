@@ -1,0 +1,189 @@
+-- MySQL dump 10.13  Distrib 5.1.66, for debian-linux-gnu (x86_64)
+--
+-- Host: localhost    Database: ruth
+-- ------------------------------------------------------
+-- Server version	5.1.66-0+squeeze1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `OS_Admins`
+--
+
+DROP TABLE IF EXISTS `OS_Admins`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OS_Admins` (
+  `UserID` int(11) NOT NULL,
+  `OrgID` int(11) NOT NULL,
+  PRIMARY KEY (`UserID`,`OrgID`),
+  KEY `OrgID` (`OrgID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `OS_Cats`
+--
+
+DROP TABLE IF EXISTS `OS_Cats`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OS_Cats` (
+  `Tag` text NOT NULL,
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `OS_OrgCats`
+--
+
+DROP TABLE IF EXISTS `OS_OrgCats`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OS_OrgCats` (
+  `OrgID` int(11) NOT NULL,
+  `CatID` int(11) NOT NULL,
+  PRIMARY KEY (`OrgID`,`CatID`),
+  KEY `CatID` (`CatID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `OS_Orgs`
+--
+
+DROP TABLE IF EXISTS `OS_Orgs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OS_Orgs` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` text NOT NULL,
+  `Description` text NOT NULL,
+  `Leader` int(11) NOT NULL,
+  `Location` varchar(100) NOT NULL,
+  `Website` varchar(200) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Leader` (`Leader`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `OS_SfCCats`
+--
+
+DROP TABLE IF EXISTS `OS_SfCCats`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OS_SfCCats` (
+  `SfCID` int(11) NOT NULL,
+  `CatID` int(11) NOT NULL,
+  PRIMARY KEY (`SfCID`,`CatID`),
+  KEY `CatID` (`CatID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `OS_SfCMods`
+--
+
+DROP TABLE IF EXISTS `OS_SfCMods`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OS_SfCMods` (
+  `UserID` int(11) NOT NULL,
+  `SfCID` int(11) NOT NULL,
+  PRIMARY KEY (`UserID`,`SfCID`),
+  KEY `SfCID` (`SfCID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `OS_SfCs`
+--
+
+DROP TABLE IF EXISTS `OS_SfCs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OS_SfCs` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` text NOT NULL,
+  `Creator` int(11) NOT NULL,
+  `Details` text NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Creator` (`Creator`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `OS_UserCats`
+--
+
+DROP TABLE IF EXISTS `OS_UserCats`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OS_UserCats` (
+  `UserID` int(11) NOT NULL,
+  `CatID` int(11) NOT NULL,
+  PRIMARY KEY (`UserID`,`CatID`),
+  KEY `CatID` (`CatID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `OS_UserOrgs`
+--
+
+DROP TABLE IF EXISTS `OS_UserOrgs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OS_UserOrgs` (
+  `UserID` int(11) NOT NULL,
+  `OrgID` int(11) NOT NULL,
+  PRIMARY KEY (`UserID`,`OrgID`),
+  KEY `OrgID` (`OrgID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `OS_Users`
+--
+
+DROP TABLE IF EXISTS `OS_Users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `OS_Users` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `FirstName` text NOT NULL,
+  `SecondName` text NOT NULL,
+  `Age` int(11) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Expertise` text NOT NULL,
+  `Interests` text NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Salt` varchar(255) NOT NULL,
+  `Username` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-06-23 19:08:41
