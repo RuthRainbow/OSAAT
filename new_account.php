@@ -4,59 +4,63 @@ include('header.php');
 
 $error = false;
 $errors = array();
+
+function existsWithLength($field, $length=0) {
+	return isset($_POST[$field]) && strlen($_POST[$field]) > $length;
+}
+
 if(isset($_POST['submit']))
 {
-	if(isset($_POST['username']) && strlen($_POST['username'])>2 && strlen($_POST['username'])<50)
-	{
+	if(existsWithLength('username') && strlen($_POST['username'])<50) {
 		$username = $_POST['username'];
 	} else {
 		$error = true;
 		array_push($errors, "Enter a username between 3 and 50 characters");
 	}
-	if(isset($_POST['password']) && strlen($_POST['password']) > 2)
-	{
+
+	if(existsWithLength('password', 2)) {
 		$password = $_POST['password'];
 	} else {
 		$error = true;
 		array_push($errors, "Enter a password of at least 3 characters");
 	}
-	if(isset($_POST['firstname']) && strlen($_POST['firstname']) > 0)
-	{
+
+	if(existsWithLength('firstname')) {
 		$firstname = $_POST['firstname'];
 	} else {
 		$error = true;
 		array_push($errors, "Enter a first name");
 	}
-	if(isset($_POST['lastname']) && strlen($_POST['lastname']) > 0)
-	{
+
+	if(existsWithLength('lastname')) {}
 		$lastname = $_POST['lastname'];
 	} else {
 		$error = true;
 		array_push($errors, "Enter a last name");
 	}
-	if(isset($_POST['email']) && strlen($_POST['email']) > 0)
-	{
+
+	if(existsWithLength('email') {
 		$email = $_POST['email'];
 	} else {
 		$error = true;
 		array_push($errors, "Enter an email address");
 	}
-	if(isset($_POST['age']) && $_POST['age'] > 0)
-	{
+
+	if(existsWithLength('age') && $_POST['age'] > 0) {
 		$age = $_POST['age'];
 	} else {
 		$error = true;
 		array_push($errors, "Enter an age");
 	}
-	if(isset($_POST['interests']) && strlen($_POST['interests']) > 0)
-	{
+
+	if(existsWithLength('interests')) {
 		$interests = $_POST['interests'];
 	} else {
 		$error = true;
 		array_push($errors, "Enter some interests");
 	}
-	if(isset($_POST['expertise']) && strlen($_POST['expertise']) > 0)
-	{
+
+	if(existsWithLength('expertise')) {
 		$expertise = $_POST['expertise'];
 	} else {
 		$error = true;
