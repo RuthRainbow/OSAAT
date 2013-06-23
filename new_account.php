@@ -18,7 +18,7 @@ if(isset($_POST['submit']))
 		array_push($errors, "Enter a username between 3 and 50 characters");
 	}
 
-	if(exists('password', 2)) {
+	if(existsWithLength('password', 2)) {
 		$password = $_POST['password'];
 	} else {
 		$error = true;
