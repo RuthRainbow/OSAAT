@@ -24,9 +24,13 @@ if(isset($_POST['submit']))
 			'".$mysqli->real_escape_string($name)."',
 			'".$mysqli->real_escape_string($login['id'])."',
 			'".$mysqli->real_escape_string($details)."')")) {
+
+		$result = $mysqli->query("INSERT INTO " . $mysql_prefix . "SfCMods(UserID, SfCID) VALUES (
+			'".$mysqli->real_escape_string($login['id'])."',
+			'".$mysqli->real_escape_string($mysqli->insert_id))
 ?>
-			<p>Your new campaign has been created.</p>
-<?php
+		<p>Your new campaign has been created.</p>
+<?php		
 		} else {
 			$error = true;
 			array_push($errors, $mysqli->error);
