@@ -10,7 +10,7 @@ require_login();
 $result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'SfCs WHERE Creator='.$login['id']);
 while($row = $result->fetch_assoc())
 {
-	echo('<tr><td><a href="sfc.php?id='.$row['ID'].'">'.$row['Name'].'</a></td></tr>');
+	echo('<tr><td><a href="sfc.php?id='.$row['ID'].'">'.stripslashes($row['Name']).'</a></td></tr>');
 }
 ?>
 </table>
@@ -25,7 +25,7 @@ while($row = $result->fetch_assoc())
 	$result2 = $mysqli->query('SELECT * FROM '.$mysql_prefix.'SfCs WHERE ID='.$row['SfCID']);
 	while($row2 = $result2->fetch_assoc())
 	{
-		echo('<tr><td><a href="sfc.php?id='.$row['SfCID'].'">'.$row2['Name'].'</a></td></tr>');
+		echo('<tr><td><a href="sfc.php?id='.$row['SfCID'].'">'.stripslashes($row2['Name']).'</a></td></tr>');
 	}
 }
 ?>

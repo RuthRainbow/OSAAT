@@ -26,10 +26,7 @@ if (!$result) {
 // One of the mysql result functions must be used
 // See also mysql_result(), mysql_fetch_array(), mysql_fetch_row(), etc.
 while ($row = $result->fetch_assoc()) {
-    $name = $row['Name'];
-    $ID = $row['ID'];
-
-echo "<tr><td style='width: 200px;'><a href='sfc.php?id=".$ID."'>".$name."</a></td></tr>";
+	echo "<tr><td style='width: 200px;'><a href='sfc.php?id=".$row['ID']."'>".stripslashes($row['Name'])."</a></td></tr>";
 }
 
 echo"</table>";

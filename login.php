@@ -2,7 +2,7 @@
 if(isset($login['id']))
 {
 ?>
-Logged in as <?echo($login['username'])?><br />
+Logged in as <?echo(stripslashes($login['username']))?><br />
 <a href="logout.php">Logout</a>
 <?
 } else {
