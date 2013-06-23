@@ -39,7 +39,7 @@ if(isset($_POST['submit']))
 		array_push($errors, "Enter a last name");
 	}
 
-	if(existsWithLength('email') {
+	if(existsWithLength('email')) {
 		$email = $_POST['email'];
 	} else {
 		$error = true;

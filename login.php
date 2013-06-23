@@ -12,5 +12,6 @@ Logged in as <?echo($login['username'])?><br />
 	Password: <input type="password" name="password"><br />
 	<input type="submit" value="Login" name="submit_login" />
 </form>
+<a href="new_account.php">Or create a new account</a>
 <?
 }

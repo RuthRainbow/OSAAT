@@ -25,7 +25,7 @@ $name = $row['Name'];
 $creator = $row['Creator'];
 $details = $row['Details'];
 
-echo "<h1>".$name."</h1>";
+echo "<h2>".$name."</h2>";
 echo "<p>".$details."</p>";
 
 // Free the resources associated with the result set
