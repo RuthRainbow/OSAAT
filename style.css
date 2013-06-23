@@ -1,0 +1,110 @@
+/* CSS Document */
+body{
+background-color:#ffffff; 
+font-color:#555555;
+position:relative;
+margin:auto;
+width:1100px;
+text-align:center;
+}
+
+#header{
+border-style:solid;
+border-width:thin;
+border-color:#0099CC;
+width:1100px;
+height:200px;
+text-align:left;
+}
+
+#title{
+margin-top:0px;
+width:300px;
+float:left;
+}
+
+#links{
+position:relative;
+float:right;
+width:400px;
+margin-top:173px;
+margin-right:-1px;
+}
+
+#wrapper{
+padding: 0;
+margin-top:10px;
+position:absolute;
+width:1100px;
+}
+
+#left-bar{
+float:left;
+width:200px;
+text-align:left;
+}
+
+#content{
+
+float:left;
+width:700px;
+text-align:left;
+}
+
+#right-bar{
+float:left;
+width:200px;
+text-align:right;
+}
+
+h1{
+font:calibri;
+font-size:80px;
+}
+
+#nav{
+list-style-type:none;
+margin-left:-40px;
+}
+
+#nav a {
+   font-size:20px;
+   text-decoration: none;
+   color: #666666;
+   display: block;
+   width: 200px;
+   border-left: 5px solid rgb(51,51,51);
+   padding: 25px 0px 25px 5px;
+}
+
+#nav a:hover{
+   color: rgb(51,51,51);
+   background:#FAFAFA;
+   text-decoration: none;
+   border-left: 5px solid #0099CC ;
+}
+
+#links a{
+font-size:20px;
+color: #666666;
+text-decoration:none;
+border-bottom: 5px solid rgb(51,51,51);
+padding: 0px 30px 0px 30px;
+}
+
+#links a:hover{
+ color: rgb(51,51,51);
+text-decoration:none;
+border-bottom: 5px solid #0099CC ;
+}
+
+#footer{
+float:left;
+border-style:solid;
+border-width:thin;
+border-color:#0099CC;
+width:1100px;
+height:75px;
+margin-top:10px;
+text-align:left;
+}
