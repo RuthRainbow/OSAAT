@@ -14,7 +14,7 @@ if (isset($_POST['submit_login'])) {
 		array_push($login_errors, "Enter your username");
 	}
 
-	if (existsWithLength('username')) {
+	if (existsWithLength('password')) {
 		$password = $_POST['password'];
 	} else {
 		$login_error = true;
