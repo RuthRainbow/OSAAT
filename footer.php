@@ -6,6 +6,7 @@
 		<?if(isset($login['id'])){?>
 							<li><a href="add_campaign.php">Add Campaign</a></li>
 							<li><a href="mycampaigns.php">My Campaigns</a></li>
+							<li><a href="my_orgs.php">My Organisations</a></li>
 		<?}?>
 							<li><a href="sfc.php">Campaigns</a></li>
 							<li><a href="sfc.php">Categories</a></li>

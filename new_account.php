@@ -5,10 +5,6 @@ include('header.php');
 $error = false;
 $errors = array();
 
-function existsWithLength($field, $length=0) {
-	return isset($_POST[$field]) && strlen($_POST[$field]) > $length;
-}
-
 if(isset($_POST['submit']))
 {
 	if(existsWithLength('username') && strlen($_POST['username'])<50) {
