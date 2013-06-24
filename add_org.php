@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
 		array_push($errors, "Please enter a description");
 	}
 	if (isset($_POST['location']) && strlen($_POST['location']) > 0) {
-		$location = $_POST['description'];
+		$location = $_POST['location'];
 	} else {
 		$error = true;
 		array_push($errors, "Please enter a location");
@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
 			'".$mysqli->real_escape_string($description)."',
 			'".$mysqli->real_escape_string($login['id'])."',
 			'".$mysqli->real_escape_string($location)."',
-			'".$mysqli->real_escape_string($website)."',
+			'".$mysqli->real_escape_string($webpage)."',
 			'".$mysqli->real_escape_string($latitude)."',
 			'".$mysqli->real_escape_string($longitude)."')") 
 			&&

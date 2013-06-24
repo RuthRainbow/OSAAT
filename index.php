@@ -39,6 +39,12 @@ while ($row = $result->fetch_assoc()) {
 }
 $result->free();
 ?>
+		<tr>
+			<td></td>
+			<td class="campaign-name">
+				<a href="sfc.php">more...</a>
+			</td>
+		</tr>
 	</table>
 </div>
 <?
@@ -100,6 +106,13 @@ if($result = $mysqli->query('SELECT NumVotes, Name, ID, Details, lat_lng_distanc
 	}
 	$result->free();
 ?>
+		<tr>
+			<td></td>
+			<td></td>
+			<td class="campaign-name">
+				<a href="location.php">more...</a>
+			</td>
+		</tr>
 	</table>
 <?
 } else {

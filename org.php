@@ -14,10 +14,30 @@ if(!$result) {
 
 $row = $result->fetch_assoc();
 ?>
-	<h2><?echo(stripslashes($row['Name']))?></h2>
-	<p><?echo(stripslashes($row['Location']))?></h2>
-	<p><?echo(stripslashes('<a href="'.$row['webpage'].'">webpage</a>'))?></p>
-	<p><?echo(stripslashes($row['Description']))?></p>
+<h1><?echo(stripslashes($row['Name']))?></h1>
+<div class="area">
+	<span class="fieldname">Description</span><span class="data"><?echo(stripslashes($row['Description']))?></span>
+</div>
+<div class="area">
+	<span class="fieldname">Website</span><span class="data">
+<?
+if($row['Website'] == '') {
+	echo('None');
+} else {
+?>
+		<a href="<?echo(stripslashes($row['Website']))?>"><?echo(stripslashes($row['Website']))?></a>
+<?
+}
+?>
+	</span>
+</div>
+<div class="area">
+	<span class="fieldname">Location</span>
+	<span class="data">
+		<?echo(stripslashes($row['Location']))?>
+		<div id="map-canvas"></div>
+	</span>
+</div>
 	<div id="map-canvas" style="height: 400px; width: 400px;"></div>
 <?
 $result->free_result();

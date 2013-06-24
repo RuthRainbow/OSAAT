@@ -105,7 +105,7 @@ window.onload = loadScript;
 </script>
 <?
 } else {
-$result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'SfCs ORDER BY NumVotes DESC LIMIT 8');
+$result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'SfCs ORDER BY NumVotes DESC');
 
 if (!$result) {
     $message  = 'Invalid query: ' . mysql_error() . "\n";
