@@ -157,6 +157,10 @@ h2{
 	border-bottom: 5px solid #0099CC;
 }
 
+.error li{
+  text-color: red;
+}
+
 #footer{
 	float:left;
 	border-style:solid;

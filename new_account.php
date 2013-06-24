@@ -90,7 +90,7 @@ if(isset($_POST['submit']))
 if (!isset($_POST['submit']) || $error) {
 
 	if ($error) {
-		echo '<p class="error">Please correct the following errors:</p><ul class="error"><li>'.implode('</li><li>', $errors).'</li></ul>';
+		echo '<p class="error">Please correct the following errors:</p><ul class="error"><li class="error">'.implode('</li><li class="error">', $errors).'</li></ul>';
 	}
 ?>
 <form action="" method="post">
