@@ -1,5 +1,5 @@
 <?php
-$pagename = 'SFCs';
+$pagename = 'View campaign';
 include('header.php');
 $ID = $_GET["id"];
 $query = "SELECT * FROM OS_SfCs WHERE ID = '".$mysqli->real_escape_string($ID)."'";

@@ -6,7 +6,7 @@ include('header.php');
 <p>Click <a href="new_account.php">here</a> to create a new account</p>
 <?
 
-$result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'SfCs ORDER BY NumVotes DESC');
+$result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'SfCs ORDER BY NumVotes DESC LIMIT 8');
 
 if (!$result) {
     $message  = 'Invalid query: ' . mysql_error() . "\n";
@@ -14,27 +14,33 @@ if (!$result) {
     die($message);
 }
 ?>
-<h2>Popular campaigns</h2>
-<table>
-<tr><th>Votes</th><th>Name</th></tr>
+<div id="popular">
+	<h2>Popular campaigns</h2>
+	<table>
 <?
 while ($row = $result->fetch_assoc()) {
 ?>
-	<tr>
-		<td class="votes">
-			<?echo($row['NumVotes'])?>
-		</td>
-		<td class="campaign-name">
-			<a href="sfc.php?id=<?echo($row['ID'])?>">
-				<?echo(stripslashes($row['Name']))?>
-			</a>
-		</td>
-	</tr>
+		<tr>
+			<td class="votes">
+				<?echo($row['NumVotes'])?>
+			</td>
+			<td>
+				<div class="campaign-name">
+					<a class="campaign-name" href="sfc.php?id=<?echo($row['ID'])?>">
+						<?echo(stripslashes($row['Name']))?>
+					</a>
+				</div>
+				<div class="campaign-desc">
+					<?$string=stripslashes($row['Details']);echo((strlen($string)>50)?substr($string,0,47).'...':$string)?>
+				</div>
+			</td>
+		</tr>
 <?
 }
 $result->free();
 ?>
-</table>
+	</table>
+</div>
 <?
 if(isset($login['id']))
 {
@@ -63,35 +69,43 @@ $mysqli->query('
 		pi()/180 / 2), 2) ));
 	END
 ');
-if($result = $mysqli->query('SELECT NumVotes, Name, ID, lat_lng_distance('.$latitude.', '.$longitude.', Latitude, Longitude) AS Distance FROM '.$mysql_prefix.'SfCs ORDER BY Distance ASC'))
+if($result = $mysqli->query('SELECT NumVotes, Name, ID, Details, lat_lng_distance('.$latitude.', '.$longitude.', Latitude, Longitude) AS Distance FROM '.$mysql_prefix.'SfCs ORDER BY Distance ASC LIMIT 8'))
 {
 ?>
-<h2>Campaigns near <?echo($region)?></h2>
-<table>
-<tr><th>Votes</th><th>Distance</th><th>Name</th></tr>
+<div id="geographic">
+	<h2>Campaigns near <?echo($region)?></h2>
+	<table>
 <?
 	while ($row = $result->fetch_assoc()) {
 ?>
-	<tr>
-		<td class="votes">
-			<?echo($row['NumVotes'])?>
-		</td>
-		<td class="distance">
-			<?echo(round($row['Distance']).'km')?>
-		</td>
-		<td class="campaign-name">
-			<a href="sfc.php?id=<?echo($row['ID'])?>">
-				<?echo(stripslashes($row['Name']))?>
-			</a>
-		</td>
-	</tr>
+		<tr>
+			<td class="votes">
+				<?echo($row['NumVotes'])?>
+			</td>
+			<td class="distance">
+				<?echo(round($row['Distance']).'km')?>
+			</td>
+			<td>
+				<div class="campaign-name">
+					<a class="campaign-name" href="sfc.php?id=<?echo($row['ID'])?>">
+						<?echo(stripslashes($row['Name']))?>
+					</a>
+				</div>
+				<div class="campaign-desc">
+					<?$string=stripslashes($row['Details']);echo((strlen($string)>50)?substr($string,0,47).'...':$string)?>
+				</div>
+			</td>
+		</tr>
 <?
 	}
 	$result->free();
 ?>
-</table>
+	</table>
 <?
 } else {
 	echo('something broke: '.$mysqli->error);
 }
+?>
+</div>
+<?
 include('footer.php');

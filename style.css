@@ -8,6 +8,7 @@ body{
 	min-width:700px;
 	text-align:center;
 	*/
+	font:calibri;
 	margin: auto;
 	padding: 0;
 	border: 0;
@@ -165,6 +166,17 @@ body{
 	border-bottom: 5px solid #0099CC;
 }
 
+a{
+	text-decoration: none;
+	color: #666666;
+}
+
+a:hover{
+	color: rgb(51,51,51);
+	background:#FAFAFA;
+	text-decoration: none;
+}
+
 .error li{
   text-color: red;
 }
@@ -181,9 +193,29 @@ body{
 }
 
 .campaign-name{
+	font-weight: bold;
 	width: 200px;
 }
 
+.campaign-desc{
+	font-size: 12px;
+}
+
 .votes{
+	width: 25px;
+	font-weight: bold;
+	font-size: 20px;
 	text-align: center;
+}
+
+.distance{
+	padding: 5px;
+}
+
+#geographic{
+	display: inline-block;
+}
+
+#popular{
+	display: inline-block;
 }
