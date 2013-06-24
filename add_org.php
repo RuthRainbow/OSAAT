@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
 		array_push($errors, "Please enter a description");
 	}
 	if (isset($_POST['location']) && strlen($_POST['location']) > 0) {
-		
+		$location = $_POST['description'];
 	} else {
 		$error = true;
 		array_push($errors, "Please enter a location");
