@@ -1,6 +1,7 @@
 <?php
 $pagename = 'View campaign';
 include('header.php');
+if(isset($_GET['id'])) {
 $ID = $_GET["id"];
 $query = "SELECT * FROM OS_SfCs WHERE ID = '".$mysqli->real_escape_string($ID)."'";
 
@@ -14,18 +15,37 @@ if (!$result) {
 
 $row = $result->fetch_assoc();
 ?>
-	<h2><?echo(stripslashes($row['Name']))?></h2>
-	<p><?echo(stripslashes($row['Location']))?></p>
-	<p><?echo(stripslashes($row['Details']))?></p>
-	<p><?echo($row['NumVotes'])?></p>
-	<div id="map-canvas" style="height: 400px; width: 400px;"></div>
+<h1><?echo(stripslashes($row['Name']))?></h1>
+<div class="area">
+	<span class="fieldname">Supporters</span><span class="data supporters-num"><?echo(stripslashes($row['NumVotes']))?></span>
+</div>
+<div class="area">
+	<span class="fieldname">Details</span><span class="data"><?echo(stripslashes($row['Details']))?></span>
+</div>
+<div class="area">
+	<span class="fieldname">Location</span>
+	<span class="data">
+		<?echo(stripslashes($row['Location']))?>
+		<div id="map-canvas"></div>
+	</span>
+</div>
 <?
 $result->free_result();
 $result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'UsersVotes WHERE UserID='.$login['id'].' AND SfCID='.$mysqli->real_escape_string($ID));
 ?>
-<div id="input_form">
+<div id="button-container">
 	<form name="input" action="" method="post">
-		<input type="submit" value="Up vote!" id="submit" <?if($result->num_rows){echo('disabled="disabled"');}?> />
+<?
+if($result->num_rows){
+?>
+		<input class="button support-button supported" type="submit" value="I support this campaign!" id="submit" disabled="disabled"/>
+<?
+} else {
+?>
+		<input class="button support-button" type="submit" value="Support this campaign!" id="submit" />
+<?
+}
+?>
 	</form>
 </div>
 
@@ -39,6 +59,8 @@ $(function() {
 			data: dataString,
 			success: function() {
 				$("#submit").attr("disabled","disabled");
+				$("#submit").attr("value","I support this campaign!");
+				$("#submit").addClass("supported");
 				alert("Thanks for your vote");
 			},	
 			error: function(jqXHR, textStatus, errorThrown) {
@@ -81,4 +103,43 @@ function loadScript() {
 
 window.onload = loadScript;
 </script>
-<?include('footer.php');
+<?
+} else {
+$result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'SfCs ORDER BY NumVotes DESC LIMIT 8');
+
+if (!$result) {
+    $message  = 'Invalid query: ' . mysql_error() . "\n";
+    $message .= 'Whole query: ' . $query;
+    die($message);
+}
+?>
+<div id="popular">
+	<h2>Popular campaigns</h2>
+	<table>
+<?
+while ($row = $result->fetch_assoc()) {
+?>
+		<tr>
+			<td class="votes">
+				<?echo($row['NumVotes'])?>
+			</td>
+			<td>
+				<div class="campaign-name">
+					<a class="campaign-name" href="sfc.php?id=<?echo($row['ID'])?>">
+						<?echo(stripslashes($row['Name']))?>
+					</a>
+				</div>
+				<div class="campaign-desc">
+					<?$string=stripslashes($row['Details']);echo((strlen($string)>50)?substr($string,0,47).'...':$string)?>
+				</div>
+			</td>
+		</tr>
+<?
+}
+$result->free();
+?>
+	</table>
+</div>
+<?
+}
+include('footer.php');

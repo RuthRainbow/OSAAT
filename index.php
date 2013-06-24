@@ -14,7 +14,7 @@ if (!$result) {
     die($message);
 }
 ?>
-<div id="popular">
+<div id="popular" class="content-div">
 	<h2>Popular campaigns</h2>
 	<table>
 <?
@@ -72,7 +72,7 @@ $mysqli->query('
 if($result = $mysqli->query('SELECT NumVotes, Name, ID, Details, lat_lng_distance('.$latitude.', '.$longitude.', Latitude, Longitude) AS Distance FROM '.$mysql_prefix.'SfCs ORDER BY Distance ASC LIMIT 8'))
 {
 ?>
-<div id="geographic">
+<div id="geographic" class="content-div">
 	<h2>Campaigns near <?echo($region)?></h2>
 	<table>
 <?

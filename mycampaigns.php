@@ -3,7 +3,7 @@ $pagename = 'My Campaigns';
 include('header.php');
 require_login();
 ?>
-<div id="created">
+<div id="created" class="content-div">
 	<h2>Campaigns I created</h2>
 	<table id="created">
 <?
@@ -31,8 +31,7 @@ while($row = $result->fetch_assoc())
 ?>
 	</table>
 </div>
-
-<div id="voted">
+<div id="voted" class="content-div">
 	<h2>Campaigns I voted for</h2>
 	<table id="voted">
 <?
