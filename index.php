@@ -110,7 +110,7 @@ if($result = $mysqli->query('SELECT NumVotes, Name, ID, Details, lat_lng_distanc
 			<td></td>
 			<td></td>
 			<td class="campaign-name">
-				<a href="location.php">more...</a>
+				<a href="locations.php">more...</a>
 			</td>
 		</tr>
 	</table>
