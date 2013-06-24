@@ -87,7 +87,7 @@ if (!$result) {
 }
 ?>
 <div id="popular">
-	<h2>People</h2>
+	<h2>Organisations</h2>
 	<table>
 <?
 while ($row = $result->fetch_assoc()) {
