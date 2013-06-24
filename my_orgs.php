@@ -10,7 +10,20 @@ require_login();
 <?
 $result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Orgs WHERE Leader='.$login['id']);
 while($row = $result->fetch_assoc()) {
-	echo('<tr><td><a href="org.php?id='.$row['ID'].'">'.stripslashes($row['Name']).'</a></td></tr>');
+?>
+		<tr>
+			<td>
+				<div class="campaign-name">
+					<a class="campaign-name" href="org.php?id=<?echo($row['ID'])?>">
+						<?echo(stripslashes($row['Name']))?>
+					</a>
+				</div>
+				<div class="campaign-desc">
+					<?$string=stripslashes($row['Description']);echo((strlen($string)>50)?substr($string,0,47).'...':$string)?>
+				</div>
+			</td>
+		</tr>
+<?
 }
 ?>
 	</table>
@@ -18,13 +31,25 @@ while($row = $result->fetch_assoc()) {
 <div class="content-div">
 	<h2>Organisations I administrate</h2>
 	<table id="admin">
-		<tr><th>Name</th></tr>
 <?
 $result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Admins WHERE UserID='.$login['id']);
 while($row = $result->fetch_assoc()) {
 	$result2 = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Orgs WHERE ID='.$row['OrgID']);
 	while($row2 = $result2->fetch_assoc()) {
-		echo('<tr><td><a href="org.php?id='.$row2['ID'].'">'.stripslashes($row2['Name']).'</a></td></tr>');
+?>
+		<tr>
+			<td>
+				<div class="campaign-name">
+					<a class="campaign-name" href="org.php?id=<?echo($row['ID'])?>">
+						<?echo(stripslashes($row['Name']))?>
+					</a>
+				</div>
+				<div class="campaign-desc">
+					<?$string=stripslashes($row['Description']);echo((strlen($string)>50)?substr($string,0,47).'...':$string)?>
+				</div>
+			</td>
+		</tr>
+<?
 	}
 }
 ?>
@@ -33,14 +58,26 @@ while($row = $result->fetch_assoc()) {
 <div class="content-div">
 	<h2>Organisations I am a member of</h2>
 	<table id="member">
-		<tr><th>Name</th></tr>
 <?
 $result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'UserOrgs WHERE UserID='.$login['id']);
 while($row = $result->fetch_assoc()) {
-        $result2 = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Orgs WHERE ID='.$row['OrgID']);
-        while($row2 = $result2->fetch_assoc()) {
-                echo('<tr><td><a href="org.php?id='.$row['ID'].'">'.stripslashes($row2['Name']).'</a></td></tr>');
-        }
+	$result2 = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Orgs WHERE ID='.$row['OrgID']);
+	while($row2 = $result2->fetch_assoc()) {
+?>
+		<tr>
+			<td>
+				<div class="campaign-name">
+					<a class="campaign-name" href="org.php?id=<?echo($row['ID'])?>">
+						<?echo(stripslashes($row['Name']))?>
+					</a>
+				</div>
+				<div class="campaign-desc">
+					<?$string=stripslashes($row['Description']);echo((strlen($string)>50)?substr($string,0,47).'...':$string)?>
+				</div>
+			</td>
+		</tr>
+<?
+	}
 }
 ?>
 	</table>
