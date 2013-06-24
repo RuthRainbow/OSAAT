@@ -3,6 +3,7 @@ $pagename = 'My Campaigns';
 include('header.php');
 require_login();
 ?>
+<p>Click <a href="add_campaign.php">here</a> to add a new campaign.<br />
 <div id="created" class="content-div">
 	<h2>Campaigns I created</h2>
 	<table id="created">

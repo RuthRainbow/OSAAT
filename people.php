@@ -1,37 +1,27 @@
-<?php 
-$pagename = 'Organisations';
+<?php
+$pagename = 'People';
 include('header.php');
-if(isset($_GET['id']))
-{
-	$ID = $_GET['id'];
-	$query = 'SELECT * FROM '.$mysql_prefix.'Orgs WHERE ID = '.$mysqli->real_escape_string($ID);
+
+if(isset($_GET['id'])) {
+	$ID = $_GET["id"];
+	$query = "SELECT * FROM OS_Users WHERE ID = '".$mysqli->real_escape_string($ID)."'";
 
 	$result = $mysqli->query($query);
 
-	if(!$result) {
-		$message = 'Invalid query: '.mysql_error()."\n";
-		$message .= 'Whole query: '.$query;
+	if (!$result) {
+		$message  = 'Invalid query: ' . mysql_error() . "\n";
+		$message .= 'Whole query: ' . $query;
 		die($message);
 	}
 
 	$row = $result->fetch_assoc();
 ?>
-<h1><?echo(stripslashes($row['Name']))?></h1>
+<h1><?echo(stripslashes($row['FirstName']).' '.stripslashes($row['SecondName']))?></h1>
 <div class="area">
-	<span class="fieldname">Description</span><span class="data"><?echo(stripslashes($row['Description']))?></span>
+	<span class="fieldname">Expertise</span><span class="data"><?echo(stripslashes($row['Expertise']))?></span>
 </div>
 <div class="area">
-	<span class="fieldname">Website</span><span class="data">
-<?
-if($row['Website'] == '') {
-	echo('None');
-} else {
-?>
-		<a href="<?echo(stripslashes($row['Website']))?>"><?echo(stripslashes($row['Website']))?></a>
-<?
-}
-?>
-	</span>
+	<span class="fieldname">Interests</span><span class="data"><?echo(stripslashes($row['Interests']))?></span>
 </div>
 <div class="area">
 	<span class="fieldname">Location</span>
@@ -40,30 +30,20 @@ if($row['Website'] == '') {
 		<div id="map-canvas"></div>
 	</span>
 </div>
-	<div id="map-canvas" style="height: 400px; width: 400px;"></div>
-<?
-$result->free_result();
-?>
-
-<div id="input_form">
-<form name="input" action="" method="get">
-<input type="submit" value="Join" id="submit">
-</form>
-</div>
 
 <script type="text/javascript">
 function initialize() {
 	var myLatlng = new google.maps.LatLng(<?echo($row['Latitude'])?>, <?echo($row['Longitude'])?>)
-		var mapOptions = {
-			zoom: 5,
-				center: myLatlng,
-				//mapTypeId: google.maps.MapTypeId.ROADMAP
-		}
+	var mapOptions = {
+		zoom: 5,
+		center: myLatlng,
+		//mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
 	var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 	var marker = new google.maps.Marker({
 		position: myLatlng,
-			map: map,
-			title: "<?echo($name)?>"
+		map: map,
+		title: "<?echo($name)?>"
 	});
 }
 
@@ -78,7 +58,7 @@ window.onload = loadScript;
 </script>
 <?
 } else {
-$result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Orgs ORDER BY Name');
+$result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Users ORDER BY SecondName');
 
 if (!$result) {
     $message  = 'Invalid query: ' . mysql_error() . "\n";
@@ -95,12 +75,12 @@ while ($row = $result->fetch_assoc()) {
 		<tr>
 			<td>
 				<div class="campaign-name">
-					<a class="campaign-name" href="org.php?id=<?echo($row['ID'])?>">
-						<?echo(stripslashes($row['Name']))?>
+					<a class="campaign-name" href="people.php?id=<?echo($row['ID'])?>">
+						<?echo(stripslashes($row['FirstName']).' '.stripslashes($row['SecondName']))?>
 					</a>
 				</div>
 				<div class="campaign-desc">
-					<?$string=stripslashes($row['Description']);echo((strlen($string)>50)?substr($string,0,47).'...':$string)?>
+					Expert on: <?$string=stripslashes($row['Expertise']);echo((strlen($string)>50)?substr($string,0,47).'...':$string)?>
 				</div>
 			</td>
 		</tr>
