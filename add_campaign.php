@@ -51,7 +51,7 @@ if(isset($_POST['submit']))
 		$geolookup = json_decode(file_get_contents('http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($_POST['location']).'&sensor=false'));
 		$latitude = $geolookup->results[0]->geometry->location->lat;
 		$longitude = $geolookup->results[0]->geometry->location->lng;
-		if ($result = $mysqli->query("INSERT INTO " . $mysql_prefix . "SfCs(Name, Creator, Details, Location,tags, Latitude, Longitude) VALUES (
+		if ($result = $mysqli->query("INSERT INTO " . $mysql_prefix . "SfCs(Name, Creator, Details, Location,Tags, Latitude, Longitude) VALUES (
 			'".$mysqli->real_escape_string($name)."',
 			'".$mysqli->real_escape_string($login['id'])."',
 			'".$mysqli->real_escape_string($details)."',

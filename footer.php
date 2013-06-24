@@ -1,6 +1,11 @@
 						</div>
 					</div>
 					<div id="left-bar">
+					<div id="searchbox">
+					  <form action="search.php" method="get">
+					  <input type="text" name="query"/> <input type="submit" name="submit" value="search" />
+					   </form>
+					</div>
 						<ul id="nav">
 							<li><a href="index.php">Home</a></li>
 		<?if(isset($login['id'])){?>
