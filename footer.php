@@ -11,7 +11,7 @@
 							<li><a href="sfc.php">Campaigns</a></li>
 							<li><a href="sfc.php">Categories</a></li>
 							<li><a href="locations.php">Locations</a></li>
-							<li><a href="sfc.php">People</a></li>
+							<li><a href="people.php">People</a></li>
 							<li><a href="orgs.php">Organisations</a></li>
 						</ul>
 					</div>
