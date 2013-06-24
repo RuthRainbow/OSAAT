@@ -50,23 +50,23 @@ $result->free_result();
 </div>
 
 <script type="text/javascript">
-$(function() {  
-  $("#submit").click(function() {  
-        var dataString = 'orgID=' + "<?php echo $ID; ?>";
-        $.ajax({
-                type:"POST",
-                url:"join_org.php",
-                data: dataString,
-                success: function() {
-                        alert("You have joined this organisation");
-                },      
-                error: function() {
-                        alert("You must be logged in to join organisations");
-                }
-        });
-        return false;   
-  });  
-}); 
+$(function() {
+	$("#submit").click(function() {
+		var dataString = 'orgID=' + "<?php echo $ID; ?>";
+		$.ajax({
+			type:"POST",
+				url:"join_org.php",
+				data: dataString,
+				success: function() {
+					alert("You have joined this organisation");
+				},
+					error: function() {
+						alert("You must be logged in to join organisations");
+					}
+		});
+		return false;
+	});
+});
 
 function initialize() {
 	var myLatlng = new google.maps.LatLng(<?echo($row['Latitude'])?>, <?echo($row['Longitude'])?>)

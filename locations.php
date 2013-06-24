@@ -79,14 +79,14 @@ function initialize() {
 if($result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'SfCs'))
 {
 	while ($row = $result->fetch_assoc()) {
-		echo('sfc_marks.push(["'.$row['Name'].'",'.$row['Latitude'].','.$row['Longitude'].']);');
+		echo('sfc_marks.push(["'.$row['Name'].'",'.$row['Latitude'].','.$row['Longitude'].','.$row['ID'].']);');
 	}
 	$result->free();
 }
 if($result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Orgs'))
 {
 	while ($row = $result->fetch_assoc()) {
-		echo('org_marks.push(["'.$row['Name'].'",'.$row['Latitude'].','.$row['Longitude'].']);');
+		echo('org_marks.push(["'.$row['Name'].'",'.$row['Latitude'].','.$row['Longitude'].','.$row['ID'].']);');
 	}
 	$result->free();
 }
@@ -118,8 +118,12 @@ if($result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Orgs'))
 			icon: pinImage,
 			shadow: pinShadow,
 			map: map,
-			title: sfc_marks[i][0]
+			title: sfc_marks[i][0],
+			url: 'sfc.php?id='+sfc_marks[i][3]
 		}));
+		google.maps.event.addListener(sfc_mark_array[i], "click", function(i){
+			window.location = this.url;
+		});
 	}
 	for(var i=0; i<org_marks.length; i++)
 	{
@@ -129,8 +133,13 @@ if($result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Orgs'))
 			icon: orgImage,
 			shadow: pinShadow,
 			map: map,
-			title: org_marks[i][0]
+			title: org_marks[i][0],
+			url: 'org.php?id='+org_marks[i][3]
 		}));
+		google.maps.event.addListener(org_mark_array[i], "click", function(){
+			console.log(this);
+			window.location = this.url;
+		});
 	}
 	var marker = new google.maps.Marker({
 		position: myLatlng,
