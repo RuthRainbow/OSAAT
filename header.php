@@ -11,7 +11,8 @@ include('common.php');
 	<body>
 		<div id="header">
 			<div id="title">
-				<h1>OSAAT</h1><h2><?echo($pagename)?></h2>
+				<span id="main-title">OSAAT</span>
+				<span id="sub-title"><?echo($pagename)?></span>
 			</div>
 			<div id="links">
 				<a href="faq.html">faq</a><a href="faq.html">about</a><a href="faq.html">contact us</a>
