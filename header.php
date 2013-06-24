@@ -16,7 +16,7 @@ include('common.php');
 			</div>
 			<div id="headerlogin">
 				<div id="login-box">
-				      <?include('login.php')?>
+<?include('login.php')?>
 				</div>
 			</div>
 			<div id="links">
