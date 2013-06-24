@@ -62,5 +62,35 @@ while($row = $result->fetch_assoc())
 ?>
 	</table>
 </div>
+<div id="moderator" class="content-div">
+	<h2>Campaigns I'm a moderator for</h2>
+	<table id="moderator">
+<?
+$result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'SfCMods WHERE UserID='.$login['id']);
+while($row = $result->fetch_assoc())
+{
+	$result2 = $mysqli->query('SELECT * FROM '.$mysql_prefix.'SfCs WHERE ID='.$row['SfCID']);
+	$row2 = $result2->fetch_assoc()
+?>
+		<tr>
+			<td class="votes">
+				<?echo($row2['NumVotes'])?>
+			</td>
+			<td>
+				<div class="campaign-name">
+					<a class="campaign-name" href="sfc.php?id=<?echo($row2['ID'])?>">
+						<?echo(stripslashes($row2['Name']))?>
+					</a>
+				</div>
+				<div class="campaign-desc">
+					<?$string=stripslashes($row2['Details']);echo((strlen($string)>25)?substr($string,0,22).'...':$string)?>
+				</div>
+			</td>
+		</tr>
+<?
+}
+?>
+	</table>
+</div>
 <?
 include('footer.php');
