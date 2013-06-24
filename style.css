@@ -26,6 +26,7 @@ body{
 	text-align:left;
 	float: left;
 	width: 100%;
+	position: relative;
 }
 
 #title{
@@ -35,10 +36,12 @@ body{
 }
 
 #links{
-	position:relative;
+	position:absolute;
 	float:right;
+	right: 0px;
 	width:350px;
-	margin-top:-8px;
+	top:100%;
+	margin-top:-25px;
 	margin-right:-7px;
 }
 
@@ -108,17 +111,22 @@ body{
 	text-align: right;
 }
 
-h1{
+#main-title{
 	font:calibri;
+	height: 200px;
 	font-size:50px;
+	font-weight: bold;
+	display: block;
 }
 
-h2{
-	float:left;
+#sub-title{
+	position: absolute;
 	margin-left:5px;
 	font:calibri;
-	font-size:20px;
+	font-size:40px;
 	font-weight:lighter;
+	top:100%;
+	margin-top: -50px;
 }
 
 #nav{
