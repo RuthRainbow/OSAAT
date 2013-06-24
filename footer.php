@@ -12,7 +12,7 @@
 							<li><a href="sfc.php">Categories</a></li>
 							<li><a href="sfc.php">Locations</a></li>
 							<li><a href="sfc.php">People</a></li>
-							<li><a href="sfc.php">Organisations</a></li>
+							<li><a href="orgs.php">Organisations</a></li>
 						</ul>
 					</div>
 					<div id="right-bar">
