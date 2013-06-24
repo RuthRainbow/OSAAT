@@ -4,20 +4,21 @@ include('header.php');
 require_login();
 ?>
 <p>Click <a href="add_org.php">here</a> to register a new organisation.
-<h2>Organisations I lead</h2>
-<table id="leader">
-	<tr><th>Name</th></tr>
+<div class="content-div">
+	<h2>Organisations I lead</h2>
+	<table id="leader">
 <?
 $result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Orgs WHERE Leader='.$login['id']);
 while($row = $result->fetch_assoc()) {
 	echo('<tr><td><a href="org.php?id='.$row['ID'].'">'.stripslashes($row['Name']).'</a></td></tr>');
 }
 ?>
-</table>
-
-<h2>Organisations I administrate</h2>
-<table id="admin">
-	<tr><th>Name</th></tr>
+	</table>
+</div>
+<div class="content-div">
+	<h2>Organisations I administrate</h2>
+	<table id="admin">
+		<tr><th>Name</th></tr>
 <?
 $result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Admins WHERE UserID='.$login['id']);
 while($row = $result->fetch_assoc()) {
@@ -27,11 +28,12 @@ while($row = $result->fetch_assoc()) {
 	}
 }
 ?>
-</table>
-
-<h2>Organisations I am a member of</h2>
-<table id="member">
-	<tr><th>Name</th></tr>
+	</table>
+</div>
+<div class="content-div">
+	<h2>Organisations I am a member of</h2>
+	<table id="member">
+		<tr><th>Name</th></tr>
 <?
 $result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'UserOrgs WHERE UserID='.$login['id']);
 while($row = $result->fetch_assoc()) {
@@ -41,6 +43,7 @@ while($row = $result->fetch_assoc()) {
         }
 }
 ?>
-</table>
+	</table>
+</div>
 <?
 include('footer.php');
