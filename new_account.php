@@ -108,8 +108,9 @@ if (!isset($_POST['submit']) || $error) {
 		echo '<p class="error">Please correct the following errors:</p><ul class="error"><li class="error">'.implode('</li><li class="error">', $errors).'</li></ul>';
 	}
 ?>
-<form action="" method="post">
-	Username: <input type="text" name="username" value="<?php echo (isset($username) ? htmlspecialchars($username) : '') ?>" /><br>
+<form id="newaccountform" action="" method="post">
+<table>
+	Username:<input type="text" name="username" value="<?php echo (isset($username) ? htmlspecialchars($username) : '') ?>" /><br>
 	Password: <input type="password" name="password" value="" /><br>
 	First name: <input type="text" name="firstname" value="<?php echo (isset($firstname) ? htmlspecialchars($firstname) : '') ?>" /><br>
 	Last name: <input type="text" name="lastname" value="<?php echo (isset($lastname) ? htmlspecialchars($lastname) : '') ?>" /><br>
@@ -120,6 +121,7 @@ if (!isset($_POST['submit']) || $error) {
 	Location: <input type="text" name="location" value="<?php echo (isset($location) ? htmlspecialchars($location) : '') ?>" /><br>
 
 	<input type="submit" value="Create" name="submit" />
+</table>
 </form>
 <?
 }
