@@ -4,59 +4,58 @@ include('header.php');
 $ID = $_GET["id"];
 $query = "SELECT * FROM OS_SfCs WHERE ID = '".$mysqli->real_escape_string($ID)."'";
 
-// Perform Query
 $result = $mysqli->query($query);
- 
-// Check result
-// This shows the actual query sent to MySQL, and the error. Useful for debu    gging.
+
 if (!$result) {
     $message  = 'Invalid query: ' . mysql_error() . "\n";
     $message .= 'Whole query: ' . $query;
     die($message);
 }
 
-
-// Use result
-// Attempting to print $result won't allow access to information in the reso    urce
-// One of the mysql result functions must be used
-// See also mysql_result(), mysql_fetch_array(), mysql_fetch_row(), etc.
 $row = $result->fetch_assoc();
 ?>
 	<h2><?echo(stripslashes($row['Name']))?></h2>
 	<p><?echo(stripslashes($row['Location']))?></p>
 	<p><?echo(stripslashes($row['Details']))?></p>
+	<p><?echo($row['NumVotes'])?></p>
 	<div id="map-canvas" style="height: 400px; width: 400px;"></div>
 <?
-
-// Free the resources associated with the result set
-// This is done automatically at the end of the script
 $result->free_result();
+$result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'UsersVotes WHERE UserID='.$login['id'].' AND SfCID='.$mysqli->real_escape_string($ID));
 ?>
 <div id="input_form">
-<form name="input" action="" method="get">
-<input type="submit" value="Up vote!" id="submit">
-</form>
+	<form name="input" action="" method="post">
+		<input type="submit" value="Up vote!" id="submit" <?if($result->num_rows){echo('disabled="disabled"');}?> />
+	</form>
 </div>
 
-<script type="text/javascript"> 
-$(function() {  
-  $("#submit").click(function() {  
-
-	var dataString = 'sfcID=' + "<?php echo $ID; ?>";
-	$.ajax({
-		type:"POST",
-		url:"process_vote.php",
-		data: dataString,
-		success: function() {
-			alert("Thanks for your vote");
-		},	
-		error: function() {
-			alert("You must be logged in to vote");
-		}
+<script type="text/javascript">
+$(function() {
+	$("#submit").click(function() {
+		var dataString = 'sfcID=' + "<?php echo $ID; ?>";
+		$.ajax({
+			type:"POST",
+			url:"process_vote.php",
+			data: dataString,
+			success: function() {
+				$("#submit").attr("disabled","disabled");
+				alert("Thanks for your vote");
+			},	
+			error: function(jqXHR, textStatus, errorThrown) {
+				if(errorThrown == 'Unauthorized'){
+					alert("You must be logged in to vote");
+				}
+				else if(errorThrown == 'Conflict'){
+					alert("You have already voted on this");
+				}
+				else{
+					alert("Unknown error");
+				}
+			}
+		});
+		return false;
 	});
-	return false;   
-  });  
-}); 
+});
 
 function initialize() {
 	var myLatlng = new google.maps.LatLng(<?echo($row['Latitude'])?>, <?echo($row['Longitude'])?>)

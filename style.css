@@ -179,3 +179,11 @@ body{
 	margin-top:10px;
 	text-align:left;
 }
+
+.campaign-name{
+	width: 200px;
+}
+
+.votes{
+	text-align: center;
+}
