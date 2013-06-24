@@ -1,18 +1,20 @@
 <?php 
 $pagename = 'Organisations';
 include('header.php');
-$ID = $_GET["id"];
-$query = 'SELECT * FROM '.$mysql_prefix.'Orgs WHERE ID = '.$mysqli->real_escape_string($ID);
+if(isset($_GET['id']))
+{
+	$ID = $_GET['id'];
+	$query = 'SELECT * FROM '.$mysql_prefix.'Orgs WHERE ID = '.$mysqli->real_escape_string($ID);
 
-$result = $mysqli->query($query);
+	$result = $mysqli->query($query);
 
-if(!$result) {
-	$message = 'Invalid query: '.mysql_error()."\n";
-	$message .= 'Whole query: '.$query;
-	die($message);
-}
+	if(!$result) {
+		$message = 'Invalid query: '.mysql_error()."\n";
+		$message .= 'Whole query: '.$query;
+		die($message);
+	}
 
-$row = $result->fetch_assoc();
+	$row = $result->fetch_assoc();
 ?>
 <h1><?echo(stripslashes($row['Name']))?></h1>
 <div class="area">
@@ -50,24 +52,6 @@ $result->free_result();
 </div>
 
 <script type="text/javascript">
-$(function() {
-	$("#submit").click(function() {
-		var dataString = 'orgID=' + "<?php echo $ID; ?>";
-		$.ajax({
-			type:"POST",
-				url:"join_org.php",
-				data: dataString,
-				success: function() {
-					alert("You have joined this organisation");
-				},
-					error: function() {
-						alert("You must be logged in to join organisations");
-					}
-		});
-		return false;
-	});
-});
-
 function initialize() {
 	var myLatlng = new google.maps.LatLng(<?echo($row['Latitude'])?>, <?echo($row['Longitude'])?>)
 		var mapOptions = {
@@ -92,4 +76,40 @@ function loadScript() {
 
 window.onload = loadScript;
 </script>
-<?include('footer.php');
+<?
+} else {
+$result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'Orgs ORDER BY Name');
+
+if (!$result) {
+    $message  = 'Invalid query: ' . mysql_error() . "\n";
+    $message .= 'Whole query: ' . $query;
+    die($message);
+}
+?>
+<div id="popular">
+	<h2>People</h2>
+	<table>
+<?
+while ($row = $result->fetch_assoc()) {
+?>
+		<tr>
+			<td>
+				<div class="campaign-name">
+					<a class="campaign-name" href="org.php?id=<?echo($row['ID'])?>">
+						<?echo(stripslashes($row['Name']))?>
+					</a>
+				</div>
+				<div class="campaign-desc">
+					<?$string=stripslashes($row['Description']);echo((strlen($string)>50)?substr($string,0,47).'...':$string)?>
+				</div>
+			</td>
+		</tr>
+<?
+}
+$result->free();
+?>
+	</table>
+</div>
+<?
+}
+include('footer.php');

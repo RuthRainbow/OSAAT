@@ -3,7 +3,7 @@ $pagename = 'View campaign';
 include('header.php');
 if(isset($_GET['id'])) {
 $ID = $_GET["id"];
-$query = "SELECT * FROM OS_SfCs WHERE ID = '".$mysqli->real_escape_string($ID)."'";
+$query = 'SELECT * FROM '.$mysql_prefix.'SfCs WHERE ID = '.$mysqli->real_escape_string($ID);
 
 $result = $mysqli->query($query);
 
@@ -52,6 +52,26 @@ if($result->num_rows){
 	</form>
 </div>
 
+<?
+$result = $mysqli->query('SELECT * FROM '.$mysql_prefix.'SfCMods WHERE UserID='.$login['id'].' AND SfCID='.$mysqli->real_escape_string($ID));
+?>
+
+<div id="mod-container">
+      <form name="mod" action="" method="post">
+<?
+if($result->num_rows) {
+?>
+         <input class="button support-button supported" type="submit" value="I'm a moderator" id="mod" disabled="disabled"/>
+ <?      
+ } else {
+ ?>
+         <input class="button support-button" type="submit" value="Become a moderator" id="mod"/>
+ <?      
+ }
+ ?>
+       </form>
+</div>
+
 <script type="text/javascript">
 $(function() {
 	$("#submit").click(function() {
@@ -81,6 +101,36 @@ $(function() {
 		return false;
 	});
 });
+
+$(function() {
+        $("#mod").click(function() {
+                var dataString = 'sfcID=' + "<?php echo $ID; ?>";
+                $.ajax({
+                        type:"POST",
+                        url:"process_mod.php",
+                        data: dataString,
+                        success: function() {
+                                $("#mod").attr("disabled","disabled");
+                                $("#mod").attr("value","I'm a moderator");
+                                $("#mod").addClass("supported");
+                                alert("Thanks for volunteering to become a moderator");
+                        },      
+                        error: function(jqXHR, textStatus, errorThrown) {
+                                if(errorThrown == 'Unauthorized'){
+                                        alert("You must be logged in to become a moderator");
+                                }
+                                else if(errorThrown == 'Conflict'){
+                                        alert("You are already a moderator");
+                                }
+                                else{
+                                        alert("Unknown error");
+                                }
+                        }
+                });
+                return false;
+        });
+});
+
 
 function initialize() {
 	var myLatlng = new google.maps.LatLng(<?echo($row['Latitude'])?>, <?echo($row['Longitude'])?>)
