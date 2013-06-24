@@ -14,8 +14,13 @@ include('common.php');
 				<span id="main-title">OSAAT</span>
 				<span id="sub-title"><?echo($pagename)?></span>
 			</div>
+			<div id="headerlogin">
+				<div id="login-box">
+				      <?include('login.php')?>
+				</div>
+			</div>
 			<div id="links">
-				<a href="faq.html">faq</a><a href="faq.html">about</a><a href="faq.html">contact us</a>
+				<a href="faq.php">faq</a><a href="about.php">about</a><a href="contact.php">contact us</a>
 			</div>
 		</div>
 		<div id="wrapper">

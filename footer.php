@@ -15,11 +15,6 @@
 							<li><a href="orgs.php">Organisations</a></li>
 						</ul>
 					</div>
-					<div id="right-bar">
-						<div id="login-box">
-							<?include('login.php')?>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
