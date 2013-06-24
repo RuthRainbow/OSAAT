@@ -23,6 +23,9 @@ $row = $result->fetch_assoc();
 	<span class="fieldname">Details</span><span class="data"><?echo(stripslashes($row['Details']))?></span>
 </div>
 <div class="area">
+	<span class="fieldname">tags</span><span class="data"><?echo(stripslashes($row['Tags']))?></span>
+</div>
+<div class="area">
 	<span class="fieldname">Location</span>
 	<span class="data">
 		<?echo(stripslashes($row['Location']))?>
