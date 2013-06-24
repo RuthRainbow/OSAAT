@@ -3,9 +3,6 @@ $pagename = 'search results';
 include('header.php');
 if(isset($_GET['query'])) {
 $tags = $_GET["query"];
-$tagarray = explode(" ",$tags);
-for
-$query = "SELECT * FROM OS_SfCs WHERE Tags LIKE '%$tags%'";
 $result = $mysqli->query("SELECT * FROM OS_SfCs WHERE Tags LIKE '%$tags%' ORDER BY NumVotes DESC");
 
 if (!$result) {
@@ -36,10 +33,10 @@ while ($row = $result->fetch_assoc()) {
 			</td>
 		</tr>
 <?
-}
+}	
 $result->free();
 ?>
-	</table>
+</table>
 </div>
 <?
 }
